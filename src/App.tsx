@@ -1,28 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
+
 import "./App.css";
-import { Header } from "./Header";
+import Header from "./components/Header";
+import SearchForm from "./components/SearchForm";
+import Bar from "./components/Bar";
 
-function SearchForm() {
-  return (
-    <form role="search" name="search form">
-      <div>
-        <label htmlFor="city">City</label>
-        <input type="text" id="city" className="city-input" />
-      </div>
-      <div>
-        <button role="button">Choose next bar for me</button>
-      </div>
-    </form>
-  );
-}
-
-type Props = Record<string, unknown>;
-
-const App: React.FC<Props> = () => {
+const App = (): JSX.Element => {
+  const [bar, setBar] = useState(null);
   return (
     <div className="App">
       <Header />
-      <SearchForm></SearchForm>
+      <SearchForm setBar={setBar}></SearchForm>
+      <Bar bar={bar} />
     </div>
   );
 };
